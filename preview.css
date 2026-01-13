@@ -1,44 +1,25 @@
+/* ===== BASE ===== */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #0f172a;
+  background: radial-gradient(1200px 600px at 50% -200px, #1e293b, #020617);
   color: #e5e7eb;
 }
 
 .container {
-  max-width: 1280px;
+  max-width: 1300px;
   margin: auto;
   padding: 20px;
 }
 
+/* ===== HERO ===== */
 .hero {
   text-align: center;
   background: #020617;
-  border-radius: 18px;
-  padding: 40px 24px;
+  border-radius: 20px;
+  padding: 36px 24px;
   margin-bottom: 40px;
-  position: relative;
-  overflow: hidden;
-  animation: fadeIn .5s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: -40%;
-  background: radial-gradient(60% 30% at 50% 0%, rgba(34,197,94,.18), transparent 60%);
-  animation: halo 8s ease-in-out infinite;
-}
-
-@keyframes halo {
-  0% { transform: translateY(-10%); }
-  50% { transform: translateY(10%); }
-  100% { transform: translateY(-10%); }
+  border: 1px solid rgba(255,255,255,0.08);
 }
 
 .hero-title {
@@ -47,7 +28,7 @@ body {
 }
 
 .hero-sub {
-  margin: 14px 0;
+  margin: 12px 0;
   color: #9ca3af;
 }
 
@@ -55,66 +36,138 @@ body {
 
 .badge-verify {
   display: inline-block;
+  margin-bottom: 16px;
   padding: 6px 16px;
   border-radius: 999px;
-  margin-bottom: 18px;
   background: rgba(34,197,94,.15);
   color: #22c55e;
   font-weight: 700;
+  font-size: 13px;
 }
 
 .benefits {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
-  gap: 14px;
-  margin-bottom: 26px;
+  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  gap: 12px;
+  margin-bottom: 22px;
+  font-size: 14px;
+  color: #cbd5f5;
 }
 
 .hero-btn {
+  display: inline-block;
   background: #25d366;
   color: #022c22;
-  padding: 14px 34px;
+  padding: 14px 32px;
   border-radius: 999px;
   font-weight: 800;
   text-decoration: none;
   box-shadow: 0 8px 20px rgba(37,211,102,.35);
-  animation: pulse 2.8s infinite;
 }
 
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(37,211,102,.45); }
-  70% { box-shadow: 0 0 0 14px rgba(37,211,102,0); }
-  100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
-}
-
+/* ===== CATALOGO ===== */
 .catalogo {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px,1fr));
-  gap: 22px;
+  grid-template-columns: repeat(auto-fill, minmax(300px,1fr));
+  gap: 24px;
 }
 
+/* ===== CARD ===== */
 .card {
   background: #020617;
   padding: 18px;
-  border-radius: 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.06);
 }
 
+.card h2 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+
+/* ===== ITEM ===== */
 .item {
-  border-bottom: 1px solid #334155;
   padding: 12px 0;
+  border-bottom: 1px solid #334155;
 }
 
-.btn {
-  background: #22c55e;
-  color: #022c22;
-  padding: 8px 18px;
-  border-radius: 8px;
-  text-decoration: none;
+.item:last-child { border-bottom: none; }
+
+.item-title {
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.price {
+  font-size: 14px;
+}
+
+.price .unit {
+  color: #e5e7eb;
+}
+
+.price .mayor {
+  color: #22c55e;
+  font-weight: 600;
+}
+
+.meta {
+  font-size: 13px;
+  color: #9ca3af;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 6px;
+}
+
+/* ===== BADGES ===== */
+.badge {
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
   font-weight: 700;
 }
 
+.badge.ok {
+  background: rgba(34,197,94,.15);
+  color: #22c55e;
+}
+
+.badge.no {
+  background: rgba(239,68,68,.15);
+  color: #ef4444;
+}
+
+.badge.offer {
+  background: rgba(249,115,22,.2);
+  color: #f97316;
+}
+
+/* ===== BOTÓN WHATSAPP ===== */
+.wa-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #25d366;
+  color: #022c22;
+  text-decoration: none;
+  font-size: 18px;
+  box-shadow: 0 4px 12px rgba(37,211,102,.35);
+  transition: transform .15s ease;
+}
+
+.wa-btn:hover {
+  transform: scale(1.08);
+}
+
+/* ===== FOOTER ===== */
 footer {
   margin-top: 50px;
   text-align: center;
+  font-size: 13px;
   color: #94a3b8;
 }
