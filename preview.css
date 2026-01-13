@@ -1,0 +1,120 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0f172a;
+  color: #e5e7eb;
+}
+
+.container {
+  max-width: 1280px;
+  margin: auto;
+  padding: 20px;
+}
+
+.hero {
+  text-align: center;
+  background: #020617;
+  border-radius: 18px;
+  padding: 40px 24px;
+  margin-bottom: 40px;
+  position: relative;
+  overflow: hidden;
+  animation: fadeIn .5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: radial-gradient(60% 30% at 50% 0%, rgba(34,197,94,.18), transparent 60%);
+  animation: halo 8s ease-in-out infinite;
+}
+
+@keyframes halo {
+  0% { transform: translateY(-10%); }
+  50% { transform: translateY(10%); }
+  100% { transform: translateY(-10%); }
+}
+
+.hero-title {
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.hero-sub {
+  margin: 14px 0;
+  color: #9ca3af;
+}
+
+.fast { color: #22c55e; font-weight: 600; }
+
+.badge-verify {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 999px;
+  margin-bottom: 18px;
+  background: rgba(34,197,94,.15);
+  color: #22c55e;
+  font-weight: 700;
+}
+
+.benefits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap: 14px;
+  margin-bottom: 26px;
+}
+
+.hero-btn {
+  background: #25d366;
+  color: #022c22;
+  padding: 14px 34px;
+  border-radius: 999px;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(37,211,102,.35);
+  animation: pulse 2.8s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(37,211,102,.45); }
+  70% { box-shadow: 0 0 0 14px rgba(37,211,102,0); }
+  100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+}
+
+.catalogo {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px,1fr));
+  gap: 22px;
+}
+
+.card {
+  background: #020617;
+  padding: 18px;
+  border-radius: 14px;
+}
+
+.item {
+  border-bottom: 1px solid #334155;
+  padding: 12px 0;
+}
+
+.btn {
+  background: #22c55e;
+  color: #022c22;
+  padding: 8px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+footer {
+  margin-top: 50px;
+  text-align: center;
+  color: #94a3b8;
+}
