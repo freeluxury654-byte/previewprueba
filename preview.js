@@ -4,6 +4,7 @@ fetch("data.json")
   .then(r => r.json())
   .then(data => {
     const cont = document.getElementById("catalogo");
+    cont.innerHTML = "";
 
     data.categorias.forEach(cat => {
       const card = document.createElement("div");
