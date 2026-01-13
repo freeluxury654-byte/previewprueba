@@ -15,7 +15,7 @@ fetch("data.json")
           `Hola, quiero comprar:\n` +
           `Producto: ${it.nombre}\n` +
           `Precio unitario: $${it.precio_unitario}\n` +
-          `Precio mayor (5+): $${it.precio_mayor}`
+          `Precio mayorista (5+): $${it.precio_mayor}`
         );
 
         card.innerHTML += `
@@ -23,8 +23,8 @@ fetch("data.json")
             <div class="item-title">${it.nombre}</div>
 
             <div class="price">
-              <span class="unit">$${it.precio_unitario}</span> |
-              <span class="mayor">Mayor (5+): $${it.precio_mayor}</span>
+              <span class="unit">$${it.precio_unitario}</span> ·
+              <span class="mayor">MAYOR (5+): $${it.precio_mayor}</span>
             </div>
 
             <div class="meta">
