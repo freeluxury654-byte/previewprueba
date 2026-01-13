@@ -17,7 +17,7 @@ function renderCatalogo(data) {
       div.className = "product";
 
       const msg = encodeURIComponent(
-        `Hola, quiero pedir:\nProducto: ${p.nombre}\nPrecio: ${p.precio}\nStock: ${p.stock}`
+        `Hola, quiero pedir:\nProducto: ${p.nombre}\nPrecio: ${p.precio}\nCantidad: 1`
       );
 
       div.innerHTML = `
