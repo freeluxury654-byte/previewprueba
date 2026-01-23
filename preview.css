@@ -1,20 +1,17 @@
-/* =====================
-   VARIABLES DE TEMA
-===================== */
 :root {
   --bg: #020617;
   --text: #f8fafc;
   --card: rgba(255,255,255,0.08);
   --accent: #2563eb;
   --accent-2: #22d3ee;
+  --success: #16a34a;
+  --error: #dc2626;
 }
 
 [data-theme="light"] {
   --bg: #f8fafc;
   --text: #020617;
   --card: #ffffff;
-  --accent: #2563eb;
-  --accent-2: #0ea5e9;
 }
 
 /* RESET */
@@ -95,6 +92,7 @@ body {
   font-size: .8rem;
 }
 
+/* BOTONES */
 .hero-actions {
   margin-top: 28px;
   display: flex;
@@ -107,7 +105,6 @@ body {
   border-radius: 12px;
   text-decoration: none;
   font-weight: bold;
-  transition: transform .2s;
 }
 
 .btn-main {
@@ -120,8 +117,6 @@ body {
   color: var(--text);
 }
 
-.btn:hover { transform: translateY(-4px); }
-
 /* ADMIN */
 .admin-panel {
   text-align: center;
@@ -130,37 +125,42 @@ body {
 
 .hidden { display: none; }
 
-/* PROGRESS */
-.progress-notice {
+/* TOAST */
+.toast-container {
   position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 20;
+}
+
+.toast {
   background: var(--card);
-  padding: 12px 20px;
-  border-radius: 999px;
+  backdrop-filter: blur(10px);
+  padding: 14px 18px;
+  border-radius: 12px;
+  min-width: 220px;
+  animation: slideIn .4s ease;
   font-size: .9rem;
 }
 
-/* CATÁLOGO */
-#catalogo {
-  max-width: 1200px;
-  margin: auto;
-  padding: 60px 16px;
+.toast.success { border-left: 4px solid var(--success); }
+.toast.error { border-left: 4px solid var(--error); }
+.toast.info { border-left: 4px solid var(--accent); }
+
+@keyframes slideIn {
+  from { transform: translateX(120%); opacity: 0; }
+  to { transform: none; opacity: 1; }
 }
 
 /* ANIMACIONES */
-.fade-in {
-  opacity: 0;
-  animation: fade .8s forwards;
-}
-
+.fade-in { opacity: 0; animation: fade .8s forwards; }
 .delay-1 { animation-delay: .2s; }
 .delay-2 { animation-delay: .4s; }
 
-@keyframes fade {
-  to { opacity: 1; }
-}
+@keyframes fade { to { opacity: 1; } }
 
 .footer {
   text-align: center;
