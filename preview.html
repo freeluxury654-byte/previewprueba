@@ -9,13 +9,13 @@
 </head>
 <body>
 
-<!-- FONDO -->
 <div class="bg-animated"></div>
 
-<!-- TOGGLE THEME -->
-<button id="themeToggle" class="theme-toggle">
-  🌙 / ☀️
-</button>
+<!-- TOGGLE TEMA -->
+<button id="themeToggle" class="theme-toggle">🌙 / ☀️</button>
+
+<!-- CONTENEDOR TOAST -->
+<div id="toastContainer" class="toast-container"></div>
 
 <!-- HERO -->
 <header class="hero fade-in">
@@ -44,17 +44,11 @@
   </div>
 </header>
 
-<!-- ADMIN -->
 <section class="admin-panel fade-in delay-1">
   <button id="btnAdmin">🛠 Activar modo admin</button>
   <button id="btnExport" class="hidden">⬇ Exportar data.json</button>
   <span id="adminIndicator" class="hidden">MODO ADMIN ACTIVO</span>
 </section>
-
-<!-- PROGRESS -->
-<div id="progressNotice" class="progress-notice hidden">
-  ⏳ Cargando catálogo…
-</div>
 
 <main id="catalogo"></main>
 
