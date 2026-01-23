@@ -3,7 +3,19 @@ let isAdmin = false;
 
 const html = document.documentElement;
 const toggle = document.getElementById("themeToggle");
-const notice = document.getElementById("progressNotice");
+const toastContainer = document.getElementById("toastContainer");
+
+/* =====================
+   TOAST SYSTEM
+===================== */
+function showToast(msg, type = "info") {
+  const t = document.createElement("div");
+  t.className = `toast ${type}`;
+  t.textContent = msg;
+  toastContainer.appendChild(t);
+
+  setTimeout(() => t.remove(), 3000);
+}
 
 /* =====================
    TEMA
@@ -14,12 +26,13 @@ if (savedTheme) html.dataset.theme = savedTheme;
 toggle.onclick = () => {
   html.dataset.theme = html.dataset.theme === "dark" ? "light" : "dark";
   localStorage.setItem("theme", html.dataset.theme);
+  showToast("Tema cambiado", "info");
 };
 
 /* =====================
    CARGA CATÁLOGO
 ===================== */
-notice.classList.remove("hidden");
+showToast("Cargando catálogo…", "info");
 
 fetch("data.json")
   .then(r => r.json())
@@ -27,9 +40,9 @@ fetch("data.json")
     data = j;
     render();
     setupWA();
-    notice.textContent = "✅ Catálogo cargado";
-    setTimeout(() => notice.classList.add("hidden"), 2000);
-  });
+    showToast("Catálogo cargado correctamente", "success");
+  })
+  .catch(() => showToast("Error al cargar catálogo", "error"));
 
 function render() {
   const c = document.getElementById("catalogo");
@@ -38,12 +51,7 @@ function render() {
   data.categorias.forEach(cat => {
     const div = document.createElement("div");
     div.className = "fade-in";
-
-    div.innerHTML = `
-      <h2>${cat.nombre}</h2>
-      <p>${cat.descripcion}</p>
-    `;
-
+    div.innerHTML = `<h2>${cat.nombre}</h2><p>${cat.descripcion}</p>`;
     c.appendChild(div);
   });
 }
@@ -62,6 +70,9 @@ document.getElementById("btnAdmin").onclick = () => {
     isAdmin = true;
     document.getElementById("btnExport").classList.remove("hidden");
     document.getElementById("adminIndicator").classList.remove("hidden");
+    showToast("Modo admin activado", "success");
+  } else {
+    showToast("Clave incorrecta", "error");
   }
 };
 
@@ -72,4 +83,5 @@ document.getElementById("btnExport").onclick = () => {
   );
   a.download = "data.json";
   a.click();
+  showToast("Archivo data.json exportado", "success");
 };
