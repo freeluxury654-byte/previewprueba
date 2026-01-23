@@ -2,101 +2,78 @@ let data = null;
 let isAdmin = false;
 
 fetch("data.json")
-  .then(res => res.json())
-  .then(json => {
-    data = json;
-    renderCatalogo();
-    setupWhatsappHeader();
+  .then(r => r.json())
+  .then(j => {
+    data = j;
+    render();
+    setupWA();
   });
 
-function renderCatalogo() {
-  const cont = document.getElementById("catalogo");
-  cont.innerHTML = "";
+function render() {
+  const c = document.getElementById("catalogo");
+  c.innerHTML = "";
 
   data.categorias.forEach(cat => {
-    const catDiv = document.createElement("div");
-    catDiv.className = "categoria";
+    const div = document.createElement("div");
+    div.className = "categoria";
 
-    catDiv.innerHTML = `
+    div.innerHTML = `
       <h2 contenteditable="${isAdmin}">${cat.nombre}</h2>
       <p contenteditable="${isAdmin}">${cat.descripcion}</p>
       <div class="productos"></div>
     `;
 
-    const productosDiv = catDiv.querySelector(".productos");
+    const grid = div.querySelector(".productos");
 
-    cat.productos.forEach(prod => {
-      const lowStock = prod.stock <= 5;
-
+    cat.productos.forEach(p => {
+      const low = p.stock <= 5;
       const card = document.createElement("div");
       card.className = "card";
 
       card.innerHTML = `
         <div class="tags">
-          ${prod.etiquetas.map(e => `<span>${e}</span>`).join("")}
-          ${lowStock ? `<span class="low-stock">⚠ Bajo stock</span>` : ""}
+          ${p.etiquetas.map(e => `<span>${e}</span>`).join("")}
+          ${low ? `<span class="low-stock">⚠ Bajo</span>` : ""}
         </div>
-
-        <h3 contenteditable="${isAdmin}">${prod.nombre}</h3>
-        <p contenteditable="${isAdmin}">${prod.descripcion}</p>
-
-        <div class="price" contenteditable="${isAdmin}">
-          $${prod.precio}
-        </div>
-
-        <div class="stock ${lowStock ? "low" : ""}">
-          Stock: <span contenteditable="${isAdmin}">${prod.stock}</span>
-        </div>
-
-        <div>Garantía: ${prod.garantia ? "Sí" : "No"}</div>
-
-        <a href="${getWhatsappLink(prod)}" target="_blank">
-          Comprar por WhatsApp
-        </a>
+        <h3 contenteditable="${isAdmin}">${p.nombre}</h3>
+        <p contenteditable="${isAdmin}">${p.descripcion}</p>
+        <div class="price">$${p.precio}</div>
+        <div class="stock ${low ? "low" : ""}">Stock: ${p.stock}</div>
+        <div>Garantía: ${p.garantia ? "Sí" : "No"}</div>
+        <a href="${wa(p)}" target="_blank">Comprar</a>
       `;
-
-      productosDiv.appendChild(card);
+      grid.appendChild(card);
     });
 
-    cont.appendChild(catDiv);
+    c.appendChild(div);
   });
 }
 
-function getWhatsappLink(prod) {
-  const msg = encodeURIComponent(
-    `Hola, estoy interesado en:\n\n` +
-    `Producto: ${prod.nombre}\n` +
-    `Precio: $${prod.precio}\n` +
-    `Stock: ${prod.stock}\n\n`
-  );
-
-  return `https://wa.me/XXXXXXXXXXX?text=${msg}`;
+function wa(p) {
+  return `https://wa.me/XXXXXXXXXXX?text=${encodeURIComponent(
+    `Hola, quiero:\n${p.nombre}\nPrecio: $${p.precio}`
+  )}`;
 }
 
-function setupWhatsappHeader() {
+function setupWA() {
   document.getElementById("ctaWhatsappHeader").href =
-    "https://wa.me/XXXXXXXXXXX?text=" +
-    encodeURIComponent("Hola, quiero información del catálogo mayorista.");
+    wa({ nombre: "información del catálogo", precio: "" });
 }
 
 document.getElementById("btnAdmin").onclick = () => {
-  const pass = prompt("Clave admin:");
-  if (pass === "7777") {
+  if (prompt("Clave admin") === "7777") {
     isAdmin = true;
     document.getElementById("btnExport").classList.remove("hidden");
     document.getElementById("adminIndicator").classList.remove("hidden");
-    renderCatalogo();
+    render();
   }
 };
 
 document.getElementById("btnExport").onclick = () => {
-  const blob = new Blob(
-    [JSON.stringify(data, null, 2)],
-    { type: "application/json" }
-  );
-
   const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
+  a.href = URL.createObjectURL(
+    new Blob([JSON.stringify(data, null, 2)], { type: "application/json" })
+  );
   a.download = "data.json";
   a.click();
 };
