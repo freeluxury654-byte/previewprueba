@@ -5,39 +5,111 @@
   <title>Dashboard Admin | Streaming Pro Center</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="preview.css">
+
+  <!-- Estilos SOLO para dashboard (no rompen nada) -->
   <style>
-    .dashboard-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      padding: 20px;
+    .dashboard-hero{
+      text-align:center;
+      padding:48px 16px 24px;
+      animation:fadeIn .8s ease forwards;
     }
-    .editor-panel, .preview-panel {
-      background: rgba(255,255,255,0.05);
-      border-radius: 14px;
-      padding: 16px;
+    .dashboard-hero h1{
+      font-size:2.4rem;
+      margin-bottom:8px;
     }
+    .dashboard-hero p{
+      color:var(--text-soft);
+      max-width:700px;
+      margin:0 auto;
+    }
+
+    .dashboard-controls{
+      text-align:center;
+      margin:24px 0;
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+
+    .dashboard-layout{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:20px;
+      padding:20px;
+      max-width:1400px;
+      margin:auto;
+    }
+
+    .editor-panel,
+    .preview-panel{
+      background:var(--card);
+      border-radius:18px;
+      padding:18px;
+      box-shadow:0 20px 50px rgba(0,0,0,.45);
+      animation:panelIn .8s ease forwards;
+    }
+
     .editor-panel h2,
-    .preview-panel h2 {
-      margin-bottom: 10px;
+    .preview-panel h2{
+      margin-bottom:12px;
+      display:flex;
+      align-items:center;
+      gap:8px;
     }
+
+    .editor-panel h2::before{
+      content:"✏️";
+    }
+    .preview-panel h2::before{
+      content:"👁";
+    }
+
     .editor-panel input,
-    .editor-panel textarea {
-      width: 100%;
-      margin-bottom: 6px;
+    .editor-panel textarea{
+      width:100%;
+      margin-bottom:6px;
+      background:var(--bg-soft);
+      color:var(--text);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:8px;
+      padding:6px;
     }
-    .editor-panel button {
-      margin-right: 6px;
-      margin-top: 6px;
+
+    .editor-panel button{
+      margin-right:6px;
+      margin-top:6px;
+    }
+
+    @keyframes fadeIn{
+      from{opacity:0;transform:translateY(20px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+    @keyframes panelIn{
+      from{opacity:0;transform:scale(.97)}
+      to{opacity:1;transform:scale(1)}
+    }
+
+    @media(max-width:900px){
+      .dashboard-layout{
+        grid-template-columns:1fr;
+      }
     }
   </style>
 </head>
 <body>
 
-<h1>Dashboard Admin</h1>
-<p>Edición completa del catálogo con vista previa en tiempo real</p>
+<!-- ===== HERO DEL DASHBOARD ===== -->
+<section class="dashboard-hero">
+  <h1>🧠 Dashboard Admin</h1>
+  <p>
+    Panel profesional de gestión de contenido.<br>
+    Edita, previsualiza y exporta tu catálogo sin backend.
+  </p>
+</section>
 
-<div class="admin-panel">
+<!-- ===== CONTROLES ADMIN ===== -->
+<div class="dashboard-controls admin-panel">
   <button id="loginBtn">🔐 Entrar como admin</button>
 
   <select id="sectionSelect" class="hidden">
@@ -51,6 +123,7 @@
   <button id="exportBtn" class="hidden">⬇ Exportar JSON</button>
 </div>
 
+<!-- ===== EDITOR + PREVIEW ===== -->
 <div class="dashboard-layout">
   <div class="editor-panel">
     <h2>Editor</h2>
@@ -58,7 +131,7 @@
   </div>
 
   <div class="preview-panel">
-    <h2>Vista previa del catálogo</h2>
+    <h2>Vista previa</h2>
     <div id="previewCatalogo"></div>
   </div>
 </div>
