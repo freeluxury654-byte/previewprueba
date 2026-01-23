@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <title>Streaming Pro Center | Preview</title>
@@ -9,13 +9,20 @@
 </head>
 <body>
 
+<!-- FONDO -->
 <div class="bg-animated"></div>
 
-<header class="hero">
+<!-- TOGGLE THEME -->
+<button id="themeToggle" class="theme-toggle">
+  🌙 / ☀️
+</button>
+
+<!-- HERO -->
+<header class="hero fade-in">
   <div class="hero-box">
     <h1>Streaming Pro Center</h1>
     <p class="hero-sub">
-      Catálogo mayorista profesional de streaming<br>
+      Catálogo mayorista profesional<br>
       <strong>Entrega inmediata · Stock real · Garantía</strong>
     </p>
 
@@ -23,7 +30,7 @@
       <span>⚡ Instantáneo</span>
       <span>📦 Mayoristas</span>
       <span>🛡️ Seguro</span>
-      <span>💼 Profesional</span>
+      <span>🎓 Educativo</span>
     </div>
 
     <div class="hero-actions">
@@ -37,15 +44,21 @@
   </div>
 </header>
 
-<section class="admin-panel">
+<!-- ADMIN -->
+<section class="admin-panel fade-in delay-1">
   <button id="btnAdmin">🛠 Activar modo admin</button>
   <button id="btnExport" class="hidden">⬇ Exportar data.json</button>
   <span id="adminIndicator" class="hidden">MODO ADMIN ACTIVO</span>
 </section>
 
+<!-- PROGRESS -->
+<div id="progressNotice" class="progress-notice hidden">
+  ⏳ Cargando catálogo…
+</div>
+
 <main id="catalogo"></main>
 
-<footer class="footer">
+<footer class="footer fade-in delay-2">
   <p>© Streaming Pro Center · Preview Profesional</p>
 </footer>
 
