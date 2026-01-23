@@ -34,7 +34,7 @@ function renderCatalogo() {
       card.innerHTML = `
         <div class="tags">
           ${prod.etiquetas.map(e => `<span>${e}</span>`).join("")}
-          ${lowStock ? `<span class="low-stock">Bajo stock</span>` : ""}
+          ${lowStock ? `<span class="low-stock">⚠ Bajo stock</span>` : ""}
         </div>
 
         <h3 contenteditable="${isAdmin}">${prod.nombre}</h3>
