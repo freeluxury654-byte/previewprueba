@@ -39,8 +39,16 @@
 
 <div class="admin-panel">
   <button id="loginBtn">🔐 Entrar como admin</button>
-  <button id="addCategoryBtn" class="hidden">➕ Añadir categoría</button>
-  <button id="exportBtn" class="hidden">⬇ Exportar catalogo.json</button>
+
+  <select id="sectionSelect" class="hidden">
+    <option value="catalogo">📦 Catálogo</option>
+    <option value="academy">🎓 Academy</option>
+    <option value="tools">🛠 Tools</option>
+    <option value="members">👥 Members</option>
+  </select>
+
+  <button id="addBtn" class="hidden">➕ Añadir</button>
+  <button id="exportBtn" class="hidden">⬇ Exportar JSON</button>
 </div>
 
 <div class="dashboard-layout">
