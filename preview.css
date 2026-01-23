@@ -1,4 +1,4 @@
-:root:root{
+:root{
   /* ===== FONDOS ===== */
   --bg:#0B1220;        /* Fondo principal */
   --bg-soft:#141C2F;   /* Fondo secundario */
@@ -22,12 +22,21 @@
   --success:#22C55E;
 }
 
+/* ===== LIGHT MODE ===== */
 [data-theme="light"]{
   --bg:#f8fafc;
+  --bg-soft:#e5e7eb;
+  --card:#ffffff;
   --text:#0b1220;
-  --card:#ffffff
+  --text-soft:#475569;
 }
-*{box-sizing:border-box;margin:0;padding:0}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0
+}
+
 body{
   font-family:Arial,Helvetica,sans-serif;
   background:var(--bg);
@@ -35,17 +44,24 @@ body{
   transition:.3s;
   overflow-x:hidden
 }
+
+/* ===== FONDO ANIMADO ===== */
 .bg-animated{
   position:fixed;
   inset:0;
   background:
-    radial-gradient(circle at top,var(--accent),transparent 60%),
-    radial-gradient(circle at bottom,var(--accent2),transparent 60%);
-  opacity:.14;
+    radial-gradient(circle at top,var(--primary),transparent 60%),
+    radial-gradient(circle at bottom,var(--secondary),transparent 60%);
+  opacity:.12;
   animation:pulse 10s infinite alternate;
   z-index:-1
 }
-@keyframes pulse{to{filter:blur(18px)}}
+
+@keyframes pulse{
+  to{filter:blur(18px)}
+}
+
+/* ===== TOGGLE ===== */
 .theme-toggle{
   position:fixed;
   top:14px;
@@ -58,6 +74,8 @@ body{
   cursor:pointer;
   z-index:10
 }
+
+/* ===== NAV ===== */
 .nav{
   display:flex;
   gap:10px;
@@ -74,9 +92,11 @@ body{
   font-size:.9rem
 }
 .nav a.active{
-  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  background:linear-gradient(90deg,var(--primary),var(--secondary));
   color:#0b1220
 }
+
+/* ===== HERO ===== */
 .hero{
   min-height:90vh;
   display:flex;
@@ -91,28 +111,40 @@ body{
   border-radius:18px;
   max-width:900px
 }
-.hero h1{font-size:2.6rem;margin-bottom:10px}
-.hero-sub{opacity:.9;margin-bottom:18px}
+.hero h1{
+  font-size:2.6rem;
+  margin-bottom:10px
+}
+.hero-sub{
+  opacity:.85;
+  color:var(--text-soft);
+  margin-bottom:18px
+}
 .hero-actions{
   display:flex;
   gap:12px;
   justify-content:center;
   flex-wrap:wrap
 }
+
+/* ===== BOTONES ===== */
 .btn{
   padding:12px 20px;
   border-radius:10px;
   text-decoration:none;
-  font-weight:bold
+  font-weight:bold;
+  display:inline-block
 }
 .btn-main{
-  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  background:linear-gradient(90deg,var(--primary),var(--secondary));
   color:#0b1220
 }
 .btn-alt{
-  border:1px solid currentColor;
+  border:1px solid var(--primary);
   color:var(--text)
 }
+
+/* ===== CONTENIDO ===== */
 .page-header{
   text-align:center;
   padding:36px 16px 10px
@@ -122,12 +154,16 @@ body{
   margin:auto;
   padding:40px 16px
 }
-.categoria{margin-bottom:40px}
+.categoria{
+  margin-bottom:40px
+}
 .productos{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   gap:18px
 }
+
+/* ===== CARDS ===== */
 .card{
   background:var(--card);
   backdrop-filter:blur(10px);
@@ -135,27 +171,51 @@ body{
   padding:18px;
   box-shadow:0 0 26px rgba(0,0,0,.35)
 }
+
+/* ===== TAGS ===== */
 .tags span{
   display:inline-block;
   margin-right:6px;
   padding:4px 8px;
   border-radius:999px;
   font-size:.7rem;
-  background:var(--accent)
+  background:var(--secondary);
+  color:#0b1220
 }
-.tags .warning{background:var(--warning)}
-.price{font-weight:bold;margin:8px 0}
-.stock.low{color:var(--danger);font-weight:bold}
+.tags .offer{
+  background:var(--offer)
+}
+.tags .vip{
+  background:var(--vip)
+}
+.tags .warning{
+  background:var(--danger)
+}
+
+/* ===== PRECIO / STOCK ===== */
+.price{
+  font-weight:bold;
+  margin:8px 0
+}
+.stock.low{
+  color:var(--danger);
+  font-weight:bold
+}
+
+/* ===== CTA CARD ===== */
 .card a{
   display:block;
   margin-top:12px;
   padding:8px;
   text-align:center;
   border-radius:8px;
-  background:var(--success);
+  background:var(--cta);
   color:#0b1220;
-  text-decoration:none
+  text-decoration:none;
+  font-weight:bold
 }
+
+/* ===== TOAST ===== */
 .toast-container{
   position:fixed;
   bottom:20px;
@@ -173,10 +233,31 @@ body{
   min-width:220px;
   font-size:.9rem
 }
-.toast.info{border-left:4px solid var(--accent)}
-.toast.success{border-left:4px solid var(--success)}
-.toast.error{border-left:4px solid var(--danger)}
-.admin-panel{text-align:center;padding:18px}
-.hidden{display:none}
-.footer{text-align:center;padding:24px;opacity:.7}
+.toast.info{
+  border-left:4px solid var(--primary)
+}
+.toast.success{
+  border-left:4px solid var(--success)
+}
+.toast.error{
+  border-left:4px solid var(--danger)
+}
 
+/* ===== ADMIN ===== */
+.admin-panel{
+  text-align:center;
+  padding:18px;
+  background:var(--bg-soft);
+  border-radius:14px
+}
+
+.hidden{
+  display:none
+}
+
+.footer{
+  text-align:center;
+  padding:24px;
+  opacity:.7;
+  color:var(--text-soft)
+}
