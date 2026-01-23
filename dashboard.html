@@ -5,20 +5,55 @@
   <title>Dashboard Admin | Streaming Pro Center</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="preview.css">
+  <style>
+    .dashboard-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      padding: 20px;
+    }
+    .editor-panel, .preview-panel {
+      background: rgba(255,255,255,0.05);
+      border-radius: 14px;
+      padding: 16px;
+    }
+    .editor-panel h2,
+    .preview-panel h2 {
+      margin-bottom: 10px;
+    }
+    .editor-panel input,
+    .editor-panel textarea {
+      width: 100%;
+      margin-bottom: 6px;
+    }
+    .editor-panel button {
+      margin-right: 6px;
+      margin-top: 6px;
+    }
+  </style>
 </head>
 <body>
 
 <h1>Dashboard Admin</h1>
-<p>Editor visual completo del catálogo</p>
+<p>Edición completa del catálogo con vista previa en tiempo real</p>
 
 <div class="admin-panel">
   <button id="loginBtn">🔐 Entrar como admin</button>
+  <button id="addCategoryBtn" class="hidden">➕ Añadir categoría</button>
   <button id="exportBtn" class="hidden">⬇ Exportar catalogo.json</button>
 </div>
 
-<hr>
+<div class="dashboard-layout">
+  <div class="editor-panel">
+    <h2>Editor</h2>
+    <div id="editor"></div>
+  </div>
 
-<div id="editor"></div>
+  <div class="preview-panel">
+    <h2>Vista previa del catálogo</h2>
+    <div id="previewCatalogo"></div>
+  </div>
+</div>
 
 <script src="admin.js"></script>
 </body>
