@@ -1,36 +1,89 @@
+let data = null;
+let isAdmin = false;
+
 fetch("data.json")
   .then(res => res.json())
-  .then(data => renderCatalogo(data));
+  .then(json => {
+    data = json;
+    renderCatalogo();
+    setupWhatsappHeader();
+  });
 
-function renderCatalogo(data) {
+function renderCatalogo() {
   const cont = document.getElementById("catalogo");
   cont.innerHTML = "";
 
   data.categorias.forEach(cat => {
-    const card = document.createElement("div");
-    card.className = "card";
+    const catDiv = document.createElement("div");
+    catDiv.className = "categoria";
 
-    card.innerHTML = `<h3>${cat.nombre}</h3>`;
+    catDiv.innerHTML = `
+      <h2 contenteditable="${isAdmin}">${cat.nombre}</h2>
+      <p contenteditable="${isAdmin}">${cat.descripcion}</p>
+      <div class="productos"></div>
+    `;
 
-    cat.productos.forEach(p => {
-      const div = document.createElement("div");
-      div.className = "product";
+    const productosDiv = catDiv.querySelector(".productos");
 
-      const msg = encodeURIComponent(
-        `Hola, quiero pedir:\nProducto: ${p.nombre}\nPrecio: ${p.precio}\nCantidad: 1`
-      );
+    cat.productos.forEach(prod => {
+      const lowStock = prod.stock <= 5;
+      const card = document.createElement("div");
+      card.className = "card";
 
-      div.innerHTML = `
-        <div><strong>${p.nombre}</strong></div>
-        <div class="price">${p.precio}</div>
-        <div class="stock">📦 Stock: ${p.stock}</div>
-        <span class="tag">${p.garantia ? "Con garantía" : "Sin garantía"}</span>
-        <a class="whatsapp" href="https://wa.me/12494792518?text=${msg}" target="_blank">💬</a>
+      card.innerHTML = `
+        <div class="tags">
+          ${prod.etiquetas.map(e => `<span>${e}</span>`).join("")}
+          ${lowStock ? `<span class="low-stock">⚠ Bajo stock</span>` : ""}
+        </div>
+        <h3 contenteditable="${isAdmin}">${prod.nombre}</h3>
+        <p contenteditable="${isAdmin}">${prod.descripcion}</p>
+        <div class="price" contenteditable="${isAdmin}">$${prod.precio}</div>
+        <div class="stock ${lowStock ? "low" : ""}">
+          Stock: <span contenteditable="${isAdmin}">${prod.stock}</span>
+        </div>
+        <div>Garantía: ${prod.garantia ? "Sí" : "No"}</div>
+        <a href="${getWhatsappLink(prod)}" target="_blank">Comprar por WhatsApp</a>
       `;
 
-      card.appendChild(div);
+      productosDiv.appendChild(card);
     });
 
-    cont.appendChild(card);
+    cont.appendChild(catDiv);
   });
 }
+
+function getWhatsappLink(prod) {
+  const msg = encodeURIComponent(
+    `Hola, estoy interesado en:\n\n` +
+    `Producto: ${prod.nombre}\n` +
+    `Precio: $${prod.precio}\n` +
+    `Stock disponible: ${prod.stock}\n\n` +
+    `Quedo atento.`
+  );
+  return `https://wa.me/XXXXXXXXXXX?text=${msg}`;
+}
+
+function setupWhatsappHeader() {
+  const btn = document.getElementById("ctaWhatsappHeader");
+  btn.href = "https://wa.me/XXXXXXXXXXX?text=" + encodeURIComponent(
+    "Hola, quiero información del catálogo mayorista."
+  );
+}
+
+document.getElementById("btnAdmin").onclick = () => {
+  const pass = prompt("Clave admin:");
+  if (pass === "7777") {
+    isAdmin = true;
+    document.getElementById("btnExport").classList.remove("hidden");
+    document.getElementById("adminIndicator").classList.remove("hidden");
+    renderCatalogo();
+  }
+};
+
+document.getElementById("btnExport").onclick = () => {
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "data.json";
+  a.click();
+};
