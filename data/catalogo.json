@@ -14,6 +14,26 @@
           "garantia": true,
           "oferta": true,
           "recomendado": true
+        },
+        {
+          "id": 1769153807413,
+          "nombre": "sasdasda",
+          "descripcion": "asdasd",
+          "precio": 22,
+          "stock": 2,
+          "garantia": false,
+          "oferta": true,
+          "recomendado": true
+        },
+        {
+          "id": 1769153807821,
+          "nombre": "sdasda",
+          "descripcion": "asdas",
+          "precio": 22,
+          "stock": 21,
+          "garantia": true,
+          "oferta": true,
+          "recomendado": false
         }
       ]
     }
