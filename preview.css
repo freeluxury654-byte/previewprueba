@@ -1,13 +1,27 @@
-:root{
-  --bg:#0b1220;
-  --text:#eef2ff;
-  --card:rgba(255,255,255,.08);
-  --accent:#3b82f6;
-  --accent2:#22d3ee;
-  --success:#22c55e;
-  --warning:#f59e0b;
-  --danger:#ef4444
+:root:root{
+  /* ===== FONDOS ===== */
+  --bg:#0B1220;        /* Fondo principal */
+  --bg-soft:#141C2F;   /* Fondo secundario */
+  --card:#1F2A3D;      /* Tarjetas / cajas */
+
+  /* ===== TEXTO ===== */
+  --text:#EAF0FF;      /* Texto principal */
+  --text-soft:#A9B1C7; /* Texto secundario */
+
+  /* ===== COLORES DE MARCA ===== */
+  --primary:#3B82F6;   /* Azul confianza */
+  --secondary:#22D3EE; /* Cian tecnológico */
+
+  /* ===== ACCIONES ===== */
+  --cta:#22C55E;       /* Verde para comprar */
+  --offer:#F59E0B;     /* Ofertas */
+  --vip:#8B5CF6;       /* VIP / Pro */
+
+  /* ===== ALERTAS ===== */
+  --danger:#EF4444;    /* Bajo stock / error */
+  --success:#22C55E;
 }
+
 [data-theme="light"]{
   --bg:#f8fafc;
   --text:#0b1220;
@@ -165,3 +179,4 @@ body{
 .admin-panel{text-align:center;padding:18px}
 .hidden{display:none}
 .footer{text-align:center;padding:24px;opacity:.7}
+
