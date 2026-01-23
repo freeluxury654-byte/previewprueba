@@ -17,23 +17,23 @@
         },
         {
           "id": 1769153807413,
-          "nombre": "sasdasda",
-          "descripcion": "asdasd",
-          "precio": 22,
-          "stock": 2,
-          "garantia": false,
+          "nombre": "Prime Video ",
+          "descripcion": "Cuentas Completa Mensual A Dominio o Acceso Estables",
+          "precio": 3.5,
+          "stock": 30,
+          "garantia": true,
           "oferta": true,
           "recomendado": true
         },
         {
           "id": 1769153807821,
-          "nombre": "sdasda",
-          "descripcion": "asdas",
-          "precio": 22,
-          "stock": 21,
+          "nombre": "Pantallas Prime Video",
+          "descripcion": "Pantallas En Alquiler, Estables, Sin Anuncios",
+          "precio": 1,
+          "stock": 50,
           "garantia": true,
           "oferta": true,
-          "recomendado": false
+          "recomendado": true
         }
       ]
     }
