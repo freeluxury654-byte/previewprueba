@@ -1,116 +1,107 @@
-const html = document.documentElement;
-const toggle = document.getElementById("themeToggle");
-const toastC = document.getElementById("toastContainer");
-const page = location.pathname.split("/").pop();
+document.addEventListener("DOMContentLoaded", () => {
 
-/* ===== UTIL ===== */
-function getContainer(){
-  return (
-    document.getElementById("content") ||
-    document.getElementById("catalogo")
-  );
-}
+  const html = document.documentElement;
+  const toggle = document.getElementById("themeToggle");
+  const toastC = document.getElementById("toastContainer");
+  const page = location.pathname.split("/").pop();
 
-function toast(m,t="info"){
-  if(!toastC) return;
-  const d=document.createElement("div");
-  d.className=`toast ${t}`;
-  d.textContent=m;
-  toastC.appendChild(d);
-  setTimeout(()=>d.remove(),3000);
-}
+  function getContainer(){
+    return document.getElementById("content");
+  }
 
-/* ===== THEME ===== */
-const saved=localStorage.getItem("theme");
-if(saved) html.dataset.theme=saved;
+  function toast(m,t="info"){
+    if(!toastC) return;
+    const d=document.createElement("div");
+    d.className=`toast ${t}`;
+    d.textContent=m;
+    toastC.appendChild(d);
+    setTimeout(()=>d.remove(),3000);
+  }
 
-if(toggle){
-  toggle.onclick=()=>{
-    html.dataset.theme=html.dataset.theme==="dark"?"light":"dark";
-    localStorage.setItem("theme",html.dataset.theme);
-    toast("Tema actualizado");
-  };
-}
+  /* ===== THEME ===== */
+  const saved=localStorage.getItem("theme");
+  if(saved) html.dataset.theme=saved;
 
-/* ===== NAV ACTIVE ===== */
-document.querySelectorAll(".nav a").forEach(a=>{
-  if(a.getAttribute("href")===page) a.classList.add("active");
-});
+  if(toggle){
+    toggle.onclick=()=>{
+      html.dataset.theme=html.dataset.theme==="dark"?"light":"dark";
+      localStorage.setItem("theme",html.dataset.theme);
+      toast("Tema actualizado");
+    };
+  }
 
-/* ===== CONFIG ===== */
-const WA="https://wa.me/XXXXXXXXXXX?text=";
+  /* ===== NAV ACTIVE ===== */
+  document.querySelectorAll(".nav a").forEach(a=>{
+    if(a.getAttribute("href")===page) a.classList.add("active");
+  });
 
-toast("Cargando datos...");
+  const WA="https://wa.me/+57301469052?text=";
 
-/* ===== ROUTER ===== */
-if(page==="catalogo.html") loadCatalogo();
-if(page==="academy.html") loadSimple("data/academy.json","🎓 Academy");
-if(page==="tools.html") loadSimple("data/tools.json","🛠 Tools");
-if(page==="members.html") loadMembers();
+  toast("Cargando datos...");
 
-/* ===== CATÁLOGO ===== */
-function loadCatalogo(){
-  fetch("data/catalogo.json")
-    .then(r=>r.json())
-    .then(d=>{
-      const c = getContainer();
-      if(!c) return;
+  /* ===== ROUTER ===== */
+  if(page==="catalogo.html") loadCatalogo();
+  if(page==="academy.html") loadSimple("data/academy.json","🎓 Academy");
+  if(page==="tools.html") loadSimple("data/tools.json","🛠 Tools");
+  if(page==="members.html") loadMembers();
 
-      c.innerHTML="";
+  /* ===== CATÁLOGO ===== */
+  function loadCatalogo(){
+    fetch("data/catalogo.json")
+      .then(r=>r.json())
+      .then(d=>{
+        const c = getContainer();
+        if(!c) return;
 
-      d.categorias.forEach(cat=>{
-        const s=document.createElement("section");
-        s.className="categoria";
-        s.innerHTML=`
-          <h2>${cat.nombre}</h2>
-          <p>${cat.descripcion}</p>
-          <div class="productos"></div>
-        `;
+        c.innerHTML="";
 
-        const g=s.querySelector(".productos");
-
-        cat.productos.forEach(p=>{
-          const low=p.stock<=5;
-
-          const card=document.createElement("div");
-          card.className="card";
-          card.innerHTML=`
-            <div class="tags">
-              ${p.oferta ? "<span class='offer'>🔥 Oferta</span>" : ""}
-              ${p.recomendado ? "<span class='vip'>⭐ Recomendado</span>" : ""}
-              ${low ? "<span class='warning'>⚠ Bajo stock</span>" : ""}
-            </div>
-
-            <h3>${p.nombre}</h3>
-            <p>${p.descripcion}</p>
-
-            <div class="price">$${p.precio}</div>
-            <div class="stock ${low?"low":""}">
-              Stock: ${p.stock}
-            </div>
-            <div>Garantía: ${p.garantia?"Sí":"No"}</div>
-
-            <a target="_blank"
-               href="${WA+encodeURIComponent("Interesado en "+p.nombre)}">
-               Comprar
-            </a>
+        d.categorias.forEach(cat=>{
+          const s=document.createElement("section");
+          s.className="categoria";
+          s.innerHTML=`
+            <h2>${cat.nombre}</h2>
+            <p>${cat.descripcion}</p>
+            <div class="productos"></div>
           `;
-          g.appendChild(card);
+
+          const g=s.querySelector(".productos");
+
+          cat.productos.forEach(p=>{
+            const low=p.stock<=5;
+            const card=document.createElement("div");
+            card.className="card";
+            card.innerHTML=`
+              <div class="tags">
+                ${p.oferta?"<span class='offer'>🔥 Oferta</span>":""}
+                ${p.recomendado?"<span class='vip'>⭐ Recomendado</span>":""}
+                ${low?"<span class='warning'>⚠ Bajo stock</span>":""}
+              </div>
+
+              <h3>${p.nombre}</h3>
+              <p>${p.descripcion}</p>
+
+              <div class="price">$${p.precio}</div>
+              <div class="stock ${low?"low":""}">Stock: ${p.stock}</div>
+              <div>Garantía: ${p.garantia?"Sí":"No"}</div>
+
+              <a target="_blank"
+                 href="${WA+encodeURIComponent("Interesado en "+p.nombre)}">
+                 Comprar
+              </a>
+            `;
+            g.appendChild(card);
+          });
+
+          c.appendChild(s);
         });
 
-        c.appendChild(s);
-      });
+        toast("Catálogo cargado","success");
+      })
+      .catch(()=>toast("Error al cargar catálogo","error"));
+  }
 
-      toast("Catálogo cargado","success");
-    })
-    .catch(()=>toast("Error al cargar catálogo","error"));
-}
-
-/* ===== SIMPLE SECTIONS ===== */
-function loadSimple(url,title){
-  fetch(url)
-    .then(r=>r.json())
-    .then(d=>{
+  function loadSimple(url,title){
+    fetch(url).then(r=>r.json()).then(d=>{
       const c = getContainer();
       if(!c) return;
 
@@ -139,13 +130,10 @@ function loadSimple(url,title){
 
       toast("Datos cargados","success");
     });
-}
+  }
 
-/* ===== MEMBERS ===== */
-function loadMembers(){
-  fetch("data/members.json")
-    .then(r=>r.json())
-    .then(d=>{
+  function loadMembers(){
+    fetch("data/members.json").then(r=>r.json()).then(d=>{
       const c = getContainer();
       if(!c) return;
 
@@ -174,4 +162,6 @@ function loadMembers(){
 
       toast("Planes cargados","success");
     });
-}
+  }
+
+});
