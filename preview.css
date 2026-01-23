@@ -1,24 +1,24 @@
 :root{
   /* ===== FONDOS ===== */
-  --bg:#0B1220;        /* Fondo principal */
-  --bg-soft:#141C2F;   /* Fondo secundario */
-  --card:#1F2A3D;      /* Tarjetas / cajas */
+  --bg:#0B1220;
+  --bg-soft:#141C2F;
+  --card:#1F2A3D;
 
   /* ===== TEXTO ===== */
-  --text:#EAF0FF;      /* Texto principal */
-  --text-soft:#A9B1C7; /* Texto secundario */
+  --text:#EAF0FF;
+  --text-soft:#A9B1C7;
 
-  /* ===== COLORES DE MARCA ===== */
-  --primary:#3B82F6;   /* Azul confianza */
-  --secondary:#22D3EE; /* Cian tecnológico */
+  /* ===== MARCA ===== */
+  --primary:#3B82F6;
+  --secondary:#22D3EE;
 
   /* ===== ACCIONES ===== */
-  --cta:#22C55E;       /* Verde para comprar */
-  --offer:#F59E0B;     /* Ofertas */
-  --vip:#8B5CF6;       /* VIP / Pro */
+  --cta:#22C55E;
+  --offer:#F59E0B;
+  --vip:#8B5CF6;
 
   /* ===== ALERTAS ===== */
-  --danger:#EF4444;    /* Bajo stock / error */
+  --danger:#EF4444;
   --success:#22C55E;
 }
 
@@ -42,7 +42,8 @@ body{
   background:var(--bg);
   color:var(--text);
   transition:.3s;
-  overflow-x:hidden
+  overflow-x:hidden;
+  padding-bottom:54px;
 }
 
 /* ===== FONDO ANIMADO ===== */
@@ -133,11 +134,16 @@ body{
   border-radius:10px;
   text-decoration:none;
   font-weight:bold;
-  display:inline-block
+  display:inline-block;
+  transition:.25s;
 }
 .btn-main{
   background:linear-gradient(90deg,var(--primary),var(--secondary));
   color:#0b1220
+}
+.btn-main:hover{
+  box-shadow:0 0 22px rgba(59,130,246,.6);
+  transform:translateY(-2px);
 }
 .btn-alt{
   border:1px solid var(--primary);
@@ -163,13 +169,21 @@ body{
   gap:18px
 }
 
-/* ===== CARDS ===== */
+/* ===== CARDS (NETFLIX-STYLE HOVER) ===== */
 .card{
   background:var(--card);
   backdrop-filter:blur(10px);
   border-radius:16px;
   padding:18px;
-  box-shadow:0 0 26px rgba(0,0,0,.35)
+  box-shadow:0 0 26px rgba(0,0,0,.35);
+  transition:.35s;
+  position:relative;
+}
+.card:hover{
+  transform:translateY(-6px) scale(1.015);
+  box-shadow:
+    0 12px 40px rgba(0,0,0,.6),
+    0 0 28px rgba(59,130,246,.35);
 }
 
 /* ===== TAGS ===== */
@@ -182,15 +196,9 @@ body{
   background:var(--secondary);
   color:#0b1220
 }
-.tags .offer{
-  background:var(--offer)
-}
-.tags .vip{
-  background:var(--vip)
-}
-.tags .warning{
-  background:var(--danger)
-}
+.tags .offer{background:var(--offer)}
+.tags .vip{background:var(--vip)}
+.tags .warning{background:var(--danger)}
 
 /* ===== PRECIO / STOCK ===== */
 .price{
@@ -202,23 +210,30 @@ body{
   font-weight:bold
 }
 
-/* ===== CTA CARD ===== */
+/* ===== CTA CARD (GLOW COMPRA) ===== */
 .card a{
   display:block;
   margin-top:12px;
-  padding:8px;
+  padding:10px;
   text-align:center;
   border-radius:8px;
   background:var(--cta);
   color:#0b1220;
   text-decoration:none;
-  font-weight:bold
+  font-weight:bold;
+  transition:.25s;
+}
+.card a:hover{
+  box-shadow:
+    0 0 18px rgba(34,197,94,.7),
+    0 0 36px rgba(34,197,94,.4);
+  transform:translateY(-1px);
 }
 
 /* ===== TOAST ===== */
 .toast-container{
   position:fixed;
-  bottom:20px;
+  bottom:70px;
   right:20px;
   display:flex;
   flex-direction:column;
@@ -233,15 +248,9 @@ body{
   min-width:220px;
   font-size:.9rem
 }
-.toast.info{
-  border-left:4px solid var(--primary)
-}
-.toast.success{
-  border-left:4px solid var(--success)
-}
-.toast.error{
-  border-left:4px solid var(--danger)
-}
+.toast.info{border-left:4px solid var(--primary)}
+.toast.success{border-left:4px solid var(--success)}
+.toast.error{border-left:4px solid var(--danger)}
 
 /* ===== ADMIN ===== */
 .admin-panel{
@@ -250,9 +259,45 @@ body{
   background:var(--bg-soft);
   border-radius:14px
 }
+.hidden{display:none}
 
-.hidden{
-  display:none
+/* ===== FOOTER MARQUEE ===== */
+.footer-marquee{
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:44px;
+  background:linear-gradient(
+    90deg,
+    rgba(59,130,246,.15),
+    rgba(34,211,238,.15)
+  );
+  backdrop-filter:blur(12px);
+  overflow:hidden;
+  z-index:999;
+  border-top:1px solid rgba(255,255,255,.08)
+}
+.footer-track{
+  display:flex;
+  align-items:center;
+  gap:36px;
+  white-space:nowrap;
+  height:100%;
+  padding-left:100%;
+  animation:footerScroll 35s linear infinite
+}
+.footer-track span{
+  font-size:.85rem;
+  color:var(--text-soft)
+}
+.footer-track .brand{
+  font-weight:bold;
+  color:var(--secondary)
+}
+@keyframes footerScroll{
+  from{transform:translateX(0)}
+  to{transform:translateX(-100%)}
 }
 
 .footer{
