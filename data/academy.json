@@ -1,0 +1,14 @@
+{
+  "items": [
+    {
+      "titulo": "Guías educativas",
+      "descripcion": "Material formativo estructurado",
+      "nivel": "Básico"
+    },
+    {
+      "titulo": "Laboratorios",
+      "descripcion": "Entornos de práctica controlados",
+      "nivel": "Intermedio"
+    }
+  ]
+}
