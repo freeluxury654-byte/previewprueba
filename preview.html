@@ -1,63 +1,54 @@
 <!DOCTYPE html>
 <html lang="es" data-theme="dark">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Streaming Pro Center | Preview</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Preview profesional del catálogo mayorista Streaming Pro Center.">
-
-  <link rel="stylesheet" href="preview.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Preview profesional del catálogo mayorista Streaming Pro Center." />
+  <link rel="stylesheet" href="preview.css" />
 </head>
 <body>
 
-<!-- Fondo animado -->
 <div class="bg-animated"></div>
 
-<!-- Toggle tema -->
-<button id="themeToggle" class="theme-toggle" aria-label="Cambiar tema">🌙 / ☀️</button>
-
-<!-- Toasts -->
+<button id="themeToggle" class="theme-toggle" aria-label="Cambiar tema">Theme</button>
 <div id="toastContainer" class="toast-container"></div>
 
-<!-- HERO -->
-<header class="hero fade-in">
+<header class="hero">
   <div class="hero-box">
     <h1>Streaming Pro Center</h1>
     <p class="hero-sub">
-      Catálogo mayorista profesional<br>
-      <strong>Entrega inmediata · Stock real · Garantía</strong>
+      Plataforma mayorista profesional<br />
+      Entrega inmediata · Stock verificado · Garantía
     </p>
 
-    <div class="hero-badges">
-      <span>⚡ Instantáneo</span>
-      <span>📦 Mayoristas</span>
-      <span>🛡️ Seguro</span>
-      <span>🎓 Educativo</span>
-    </div>
+    <nav class="nav">
+      <a href="preview.html">Inicio</a>
+      <a href="catalogo.html">Catálogo</a>
+      <a href="academy.html">Academy</a>
+      <a href="tools.html">Tools</a>
+      <a href="members.html">Members</a>
+    </nav>
 
     <div class="hero-actions">
       <a id="ctaWhatsappHeader" class="btn btn-main" href="#" target="_blank" rel="noopener">
-        📲 WhatsApp Directo
+        Contactar por WhatsApp
       </a>
-      <a href="#catalogo" class="btn btn-alt">
-        📂 Ver Catálogo
+      <a href="catalogo.html" class="btn btn-alt">
+        Ver Catálogo
       </a>
     </div>
   </div>
 </header>
 
-<!-- ADMIN -->
-<section class="admin-panel fade-in delay-1">
-  <button id="btnAdmin">🛠 Activar modo admin</button>
-  <button id="btnExport" class="hidden">⬇ Exportar data.json</button>
+<section class="admin-panel">
+  <button id="btnAdmin">Activar modo admin</button>
+  <button id="btnExport" class="hidden">Exportar data.json</button>
   <span id="adminIndicator" class="hidden">MODO ADMIN ACTIVO</span>
 </section>
 
-<!-- CATÁLOGO -->
-<main id="catalogo"></main>
-
-<footer class="footer fade-in delay-2">
-  <p>© Streaming Pro Center · Preview Profesional</p>
+<footer class="footer">
+  <p>© Streaming Pro Center · Preview</p>
 </footer>
 
 <script src="preview.js"></script>
