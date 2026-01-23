@@ -4,34 +4,44 @@
   <meta charset="UTF-8" />
   <title>Streaming Pro Center | Catálogo Mayorista</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Catálogo mayorista de streaming con entrega inmediata y stock real." />
+  <meta name="description" content="Catálogo mayorista profesional de streaming. Entrega inmediata, stock real y soporte confiable." />
 
-  <!-- CSS CORRECTO -->
-  <link rel="stylesheet" href="preview.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
+<!-- FONDO ANIMADO -->
+<div class="animated-bg"></div>
+
 <header class="header">
   <h1>Streaming Pro Center</h1>
+
   <p class="subtitle">
-    Catálogo mayorista profesional · Entrega inmediata · Stock verificado
+    Plataforma mayorista de streaming<br>
+    <strong>Stock real · Entrega inmediata · Garantía</strong>
   </p>
 
   <div class="trust-badges">
-    <span>✔ Entrega inmediata</span>
-    <span>✔ Stock real</span>
-    <span>✔ Garantía</span>
+    <span>⚡ Entrega inmediata</span>
+    <span>📦 Stock verificado</span>
+    <span>🛡️ Garantía real</span>
+    <span>🤝 Trato mayorista</span>
   </div>
 
-  <a id="ctaWhatsappHeader" class="cta-whatsapp" href="#" target="_blank">
-    Contactar por WhatsApp
-  </a>
+  <div class="header-actions">
+    <a id="ctaWhatsappHeader" class="btn primary" href="#" target="_blank">
+      📲 Contactar por WhatsApp
+    </a>
+    <a href="#catalogo" class="btn secondary">
+      📂 Ver catálogo
+    </a>
+  </div>
 </header>
 
 <main>
   <div class="admin-bar">
-    <button id="btnAdmin">Editar catálogo</button>
-    <button id="btnExport" class="hidden">Exportar data.json</button>
+    <button id="btnAdmin">🛠 Activar modo admin</button>
+    <button id="btnExport" class="hidden">⬇ Exportar data.json</button>
     <span id="adminIndicator" class="hidden">MODO ADMIN ACTIVO</span>
   </div>
 
@@ -39,10 +49,9 @@
 </main>
 
 <footer class="footer">
-  <p>© Streaming Pro Center</p>
+  <p>© Streaming Pro Center · Catálogo Mayorista Profesional</p>
 </footer>
 
-<!-- JS CORRECTO -->
-<script src="preview.js"></script>
+<script src="public.js"></script>
 </body>
 </html>
