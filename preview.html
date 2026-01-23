@@ -14,33 +14,65 @@
 <button id="themeToggle" class="theme-toggle" aria-label="Cambiar tema">Theme</button>
 <div id="toastContainer" class="toast-container"></div>
 
-<header class="hero">
-  <div class="hero-box">
-    <h1>Streaming Pro Center</h1>
+<!-- ===== HERO CINEMÁTICO ===== -->
+<header class="hero cinematic-hero">
+  <div class="hero-box cinematic-box">
+
+    <h1 class="hero-title">
+      Streaming <span>Pro</span> Center
+    </h1>
+
     <p class="hero-sub">
       Plataforma mayorista profesional<br />
-      Entrega inmediata · Stock verificado · Garantía
+      <strong>Entrega inmediata · Stock verificado · Garantía</strong>
     </p>
 
-    <nav class="nav">
-      <a href="preview.html">Inicio</a>
-      <a href="catalogo.html">Catálogo</a>
-      <a href="academy.html">Academy</a>
-      <a href="tools.html">Tools</a>
-      <a href="members.html">Members</a>
+    <!-- ===== NAV CON EMOJIS ===== -->
+    <nav class="nav hero-nav">
+      <a href="preview.html" class="active">🏠 Inicio</a>
+      <a href="catalogo.html">📦 Catálogo</a>
+      <a href="academy.html">🎓 Academy</a>
+      <a href="tools.html">🛠 Tools</a>
+      <a href="members.html">👥 Members</a>
     </nav>
 
+    <!-- ===== CTA ===== -->
     <div class="hero-actions">
-      <a id="ctaWhatsappHeader" class="btn btn-main" href="#" target="_blank" rel="noopener">
-        Contactar por WhatsApp
+      <a id="ctaWhatsappHeader"
+         class="btn btn-main pulse-cta"
+         href="#"
+         target="_blank"
+         rel="noopener">
+        💬 Contactar por WhatsApp
       </a>
+
       <a href="catalogo.html" class="btn btn-alt">
-        Ver Catálogo
+        📦 Ver Catálogo
       </a>
     </div>
+
   </div>
 </header>
 
+<!-- ===== LOGOS ANIMADOS ESTILO TEXTO ===== -->
+<section class="logos-strip">
+  <div class="logos-track">
+    <span class="logo netflix">NETFLIX</span>
+    <span class="logo prime">PRIME VIDEO</span>
+    <span class="logo youtube">YOUTUBE</span>
+    <span class="logo chatgpt">CHATGPT</span>
+    <span class="logo vpn">VPN TOOLS</span>
+
+    <!-- duplicado para loop infinito -->
+    <span class="logo netflix">NETFLIX</span>
+    <span class="logo prime">PRIME VIDEO</span>
+    <span class="logo youtube">YOUTUBE</span>
+    <span class="logo chatgpt">CHATGPT</span>
+    <span class="logo vpn">VPN TOOLS</span>
+  </div>
+</section>
+
+<!-- ===== PANEL ADMIN (NO SE TOCA) ===== -->
 <section class="admin-panel">
   <button id="btnAdmin">Activar modo admin</button>
   <button id="btnExport" class="hidden">Exportar data.json</button>
