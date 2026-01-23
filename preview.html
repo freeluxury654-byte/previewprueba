@@ -4,17 +4,19 @@
   <meta charset="UTF-8">
   <title>Streaming Pro Center | Preview</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Preview profesional del catálogo mayorista Streaming Pro Center.">
 
   <link rel="stylesheet" href="preview.css">
 </head>
 <body>
 
+<!-- Fondo animado -->
 <div class="bg-animated"></div>
 
-<!-- TOGGLE TEMA -->
-<button id="themeToggle" class="theme-toggle">🌙 / ☀️</button>
+<!-- Toggle tema -->
+<button id="themeToggle" class="theme-toggle" aria-label="Cambiar tema">🌙 / ☀️</button>
 
-<!-- CONTENEDOR TOAST -->
+<!-- Toasts -->
 <div id="toastContainer" class="toast-container"></div>
 
 <!-- HERO -->
@@ -34,7 +36,7 @@
     </div>
 
     <div class="hero-actions">
-      <a id="ctaWhatsappHeader" class="btn btn-main" href="#" target="_blank">
+      <a id="ctaWhatsappHeader" class="btn btn-main" href="#" target="_blank" rel="noopener">
         📲 WhatsApp Directo
       </a>
       <a href="#catalogo" class="btn btn-alt">
@@ -44,12 +46,14 @@
   </div>
 </header>
 
+<!-- ADMIN -->
 <section class="admin-panel fade-in delay-1">
   <button id="btnAdmin">🛠 Activar modo admin</button>
   <button id="btnExport" class="hidden">⬇ Exportar data.json</button>
   <span id="adminIndicator" class="hidden">MODO ADMIN ACTIVO</span>
 </section>
 
+<!-- CATÁLOGO -->
 <main id="catalogo"></main>
 
 <footer class="footer fade-in delay-2">
