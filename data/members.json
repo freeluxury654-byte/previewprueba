@@ -1,0 +1,16 @@
+{
+  "planes": [
+    {
+      "nombre": "Básico",
+      "detalle": "Acceso a comunidad"
+    },
+    {
+      "nombre": "Pro",
+      "detalle": "Contenido avanzado"
+    },
+    {
+      "nombre": "VIP",
+      "detalle": "Todo incluido"
+    }
+  ]
+}
