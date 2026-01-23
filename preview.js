@@ -27,22 +27,32 @@ function renderCatalogo() {
 
     cat.productos.forEach(prod => {
       const lowStock = prod.stock <= 5;
+
       const card = document.createElement("div");
       card.className = "card";
 
       card.innerHTML = `
         <div class="tags">
           ${prod.etiquetas.map(e => `<span>${e}</span>`).join("")}
-          ${lowStock ? `<span class="low-stock">⚠ Bajo stock</span>` : ""}
+          ${lowStock ? `<span class="low-stock">Bajo stock</span>` : ""}
         </div>
+
         <h3 contenteditable="${isAdmin}">${prod.nombre}</h3>
         <p contenteditable="${isAdmin}">${prod.descripcion}</p>
-        <div class="price" contenteditable="${isAdmin}">$${prod.precio}</div>
+
+        <div class="price" contenteditable="${isAdmin}">
+          $${prod.precio}
+        </div>
+
         <div class="stock ${lowStock ? "low" : ""}">
           Stock: <span contenteditable="${isAdmin}">${prod.stock}</span>
         </div>
+
         <div>Garantía: ${prod.garantia ? "Sí" : "No"}</div>
-        <a href="${getWhatsappLink(prod)}" target="_blank">Comprar por WhatsApp</a>
+
+        <a href="${getWhatsappLink(prod)}" target="_blank">
+          Comprar por WhatsApp
+        </a>
       `;
 
       productosDiv.appendChild(card);
@@ -57,17 +67,16 @@ function getWhatsappLink(prod) {
     `Hola, estoy interesado en:\n\n` +
     `Producto: ${prod.nombre}\n` +
     `Precio: $${prod.precio}\n` +
-    `Stock disponible: ${prod.stock}\n\n` +
-    `Quedo atento.`
+    `Stock: ${prod.stock}\n\n`
   );
+
   return `https://wa.me/XXXXXXXXXXX?text=${msg}`;
 }
 
 function setupWhatsappHeader() {
-  const btn = document.getElementById("ctaWhatsappHeader");
-  btn.href = "https://wa.me/XXXXXXXXXXX?text=" + encodeURIComponent(
-    "Hola, quiero información del catálogo mayorista."
-  );
+  document.getElementById("ctaWhatsappHeader").href =
+    "https://wa.me/XXXXXXXXXXX?text=" +
+    encodeURIComponent("Hola, quiero información del catálogo mayorista.");
 }
 
 document.getElementById("btnAdmin").onclick = () => {
@@ -81,7 +90,11 @@ document.getElementById("btnAdmin").onclick = () => {
 };
 
 document.getElementById("btnExport").onclick = () => {
-  const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+  const blob = new Blob(
+    [JSON.stringify(data, null, 2)],
+    { type: "application/json" }
+  );
+
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
   a.download = "data.json";
