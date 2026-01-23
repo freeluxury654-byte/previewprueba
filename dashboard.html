@@ -1,141 +1,39 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
   <meta charset="UTF-8">
-  <title>Dashboard Admin | Streaming Pro Center</title>
+  <title>Catálogo | Streaming Pro Center</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Catálogo mayorista de productos y servicios digitales.">
   <link rel="stylesheet" href="preview.css">
-
-  <!-- Estilos SOLO para dashboard (no rompen nada) -->
-  <style>
-    .dashboard-hero{
-      text-align:center;
-      padding:48px 16px 24px;
-      animation:fadeIn .8s ease forwards;
-    }
-    .dashboard-hero h1{
-      font-size:2.4rem;
-      margin-bottom:8px;
-    }
-    .dashboard-hero p{
-      color:var(--text-soft);
-      max-width:700px;
-      margin:0 auto;
-    }
-
-    .dashboard-controls{
-      text-align:center;
-      margin:24px 0;
-      display:flex;
-      gap:10px;
-      justify-content:center;
-      flex-wrap:wrap;
-    }
-
-    .dashboard-layout{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:20px;
-      padding:20px;
-      max-width:1400px;
-      margin:auto;
-    }
-
-    .editor-panel,
-    .preview-panel{
-      background:var(--card);
-      border-radius:18px;
-      padding:18px;
-      box-shadow:0 20px 50px rgba(0,0,0,.45);
-      animation:panelIn .8s ease forwards;
-    }
-
-    .editor-panel h2,
-    .preview-panel h2{
-      margin-bottom:12px;
-      display:flex;
-      align-items:center;
-      gap:8px;
-    }
-
-    .editor-panel h2::before{
-      content:"✏️";
-    }
-    .preview-panel h2::before{
-      content:"👁";
-    }
-
-    .editor-panel input,
-    .editor-panel textarea{
-      width:100%;
-      margin-bottom:6px;
-      background:var(--bg-soft);
-      color:var(--text);
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:8px;
-      padding:6px;
-    }
-
-    .editor-panel button{
-      margin-right:6px;
-      margin-top:6px;
-    }
-
-    @keyframes fadeIn{
-      from{opacity:0;transform:translateY(20px)}
-      to{opacity:1;transform:translateY(0)}
-    }
-    @keyframes panelIn{
-      from{opacity:0;transform:scale(.97)}
-      to{opacity:1;transform:scale(1)}
-    }
-
-    @media(max-width:900px){
-      .dashboard-layout{
-        grid-template-columns:1fr;
-      }
-    }
-  </style>
 </head>
 <body>
 
-<!-- ===== HERO DEL DASHBOARD ===== -->
-<section class="dashboard-hero">
-  <h1>🧠 Dashboard Admin</h1>
-  <p>
-    Panel profesional de gestión de contenido.<br>
-    Edita, previsualiza y exporta tu catálogo sin backend.
-  </p>
-</section>
+<div class="bg-animated"></div>
 
-<!-- ===== CONTROLES ADMIN ===== -->
-<div class="dashboard-controls admin-panel">
-  <button id="loginBtn">🔐 Entrar como admin</button>
+<button id="themeToggle" class="theme-toggle">Theme</button>
+<div id="toastContainer" class="toast-container"></div>
 
-  <select id="sectionSelect" class="hidden">
-    <option value="catalogo">📦 Catálogo</option>
-    <option value="academy">🎓 Academy</option>
-    <option value="tools">🛠 Tools</option>
-    <option value="members">👥 Members</option>
-  </select>
+<header class="page-header">
+  <h1>📦 Catálogo</h1>
+  <p class="hero-sub">Productos y servicios disponibles</p>
 
-  <button id="addBtn" class="hidden">➕ Añadir</button>
-  <button id="exportBtn" class="hidden">⬇ Exportar JSON</button>
-</div>
+  <nav class="nav">
+    <a href="preview.html">🏠 Inicio</a>
+    <a href="catalogo.html" class="active">📦 Catálogo</a>
+    <a href="academy.html">🎓 Academy</a>
+    <a href="tools.html">🛠 Tools</a>
+    <a href="members.html">👥 Members</a>
+  </nav>
+</header>
 
-<!-- ===== EDITOR + PREVIEW ===== -->
-<div class="dashboard-layout">
-  <div class="editor-panel">
-    <h2>Editor</h2>
-    <div id="editor"></div>
-  </div>
+<!-- 🔴 ESTE ES EL CONTENEDOR CORRECTO -->
+<main id="content"></main>
 
-  <div class="preview-panel">
-    <h2>Vista previa</h2>
-    <div id="previewCatalogo"></div>
-  </div>
-</div>
+<footer class="footer">
+  <p>© Streaming Pro Center · Catálogo</p>
+</footer>
 
-<script src="admin.js"></script>
+<script src="preview.js"></script>
 </body>
 </html>
